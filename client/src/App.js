@@ -10,7 +10,9 @@ import Home from "./pages/Home";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Navbar from "./components/Navbar";
-import './Style.scss'
+import './Style.scss';
+import Photos from "./pages/Photos";
+import Single from "./pages/Single";
 
 const Layout = () => {
   return (
@@ -30,14 +32,14 @@ const router = createBrowserRouter([
         path: "/",
         element: <Home />,
       },
-      // {
-      //   path: "/post/:id",
-      //   element: <Single />,
-      // },
-      // {
-      //   path: "/write",
-      //   element: <Write />,
-      // },
+      {
+        path: "/photos",
+        element: <Photos />,
+      },
+      {
+        path: "/photo/:id",
+        element: <Single />,
+      },
     ]
 
   },
@@ -49,6 +51,7 @@ const router = createBrowserRouter([
     path: "/login",
     element: <Login />,
   },
+  
 
 ]);
 
