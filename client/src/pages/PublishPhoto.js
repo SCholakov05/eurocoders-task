@@ -6,35 +6,50 @@ import moment from "moment";
 const PublishPhoto = () => {
 
     const state = useLocation().state;
-    const [value, setValue] = useState(state?.title || "");
-    const [title, setTitle] = useState(state?.desc || "");
-    const [img, setImg] = useState(null);
+    const [title, setTitle] = useState(state?.title || "");
+    const [file, setFile] = useState(null);
     const [cat, setCat] = useState(state?.cat || "");
 
-    const navigate = useNavigate();
+    const navigate = useNavigate()
 
-    const handleClick = async (e) => {
-
+    const upload = async () => {
+        try {
+            const formData = new FormData();
+            formData.append('file', file);
+            const res = await axios.post('/upload', formData);
+            return res.data;
+        } catch (err) {
+            console.log(err);
+        }
     }
 
+    const handleClick = async (e) => {
+        e.preventDefault();
+        const imgUrl = await upload();
+        try {
+            state ? await axios.put(`/photos/${state.id}`, {
+                title, cat, img: file ? imgUrl : ''
+            }) : await axios.post(`/photos/`, {
+                title, cat, img: file ? imgUrl : '', date: moment(Date.now()).format('YYYY-MM-DD HH:MM:SS')
+            });
+            navigate('/');
+        } catch (err) {
+            console.log(err);
+        }
+    };
     return (
         <div className="add">
             <div className="content">
                 <input
                     type="text"
                     placeholder="Title"
+                    value={title}
                     onChange={(e) => setTitle(e.target.value)}
                 />
             </div>
             <div className="menu">
                 <div className="item">
                     <h1>Publish</h1>
-                    <span>
-                        <b>Status: </b> Draft
-                    </span>
-                    <span>
-                        <b>Visibility: </b> Public
-                    </span>
                     <input
                         style={{ display: "none" }}
                         type="file"
@@ -45,9 +60,6 @@ const PublishPhoto = () => {
                     <label className="file" htmlFor="file">
                         Upload Image
                     </label>
-                    <div className="buttons">
-                        <button>Save as a draft</button>
-                    </div>
                     <h1>Category</h1>
                     <div className="cat">
                         <input
@@ -104,8 +116,11 @@ const PublishPhoto = () => {
                         />
                         <label htmlFor="food">Food</label>
                     </div>
-                    <button onClick={handleClick}>Publish</button>
+                    <button onClick={handleClick} className="publish">Publish</button>
                 </div>
+                {/* {
+                    file && <img src={`${file.name}`} alt="" />
+                } */}
             </div>
         </div>
     )

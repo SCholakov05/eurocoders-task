@@ -35,6 +35,11 @@ const Navbar = () => {
               Login
             </Link>
           )}
+          <span className="publish">
+            <Link className="link" to="/publish">
+              PUBLISH
+            </Link>
+          </span>
         </div>
       </div>
     </div>

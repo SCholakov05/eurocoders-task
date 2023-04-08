@@ -8,11 +8,13 @@ const Photos = () => {
     const [photos, setPhotos] = useState([]);
 
     const cat = useLocation().search;
+    console.log(useLocation());
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const res = await axios.get(`/photos${cat}`);
+                const res = await axios.get(`/photos/${cat}`);
+                console.log(res);
                 setPhotos(res.data);
             } catch (err) {
                 console.log(err);
@@ -50,7 +52,7 @@ const Photos = () => {
                             }
                             <div className="img">
                                 <Link to={`/photo/${photo.id}`}>
-                                    <img src={photo.img} alt={`${photo.title} photo`} />
+                                    <img src={`../upload/${photo.img}`} alt={`${photo.title} photo`} />
                                 </Link>
                             </div>
                             <div className="content">

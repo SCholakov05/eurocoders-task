@@ -26,7 +26,7 @@ const Home = () => {
           <div className="photo" key={photo.id}>
             <div className="img">
               <Link to={`/photo/${photo.id}`}>
-              <img src={photo.img} alt={`${photo.title} photo`} />
+              <img src={`./upload/${photo.img}`} alt={`${photo.title} photo`} />
               </Link>
             </div>
             <div className="content">

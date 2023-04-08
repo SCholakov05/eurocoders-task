@@ -42,7 +42,7 @@ const Single = () => {
     return (
         <div className="single">
             <div className="content">
-                <img src={photo?.img} alt="" />
+                <img src={`../upload/${photo?.img}`} alt="" />
                 <div className="user">
                     <div className="info">
                         <span>{photo.username}</span>
@@ -50,7 +50,7 @@ const Single = () => {
                     </div>
                         {currentUser.username === photo.username && (
                             <div className="edit">
-                                <Link to={`/write?edit=2`} state={photo}>
+                                <Link to={`/publish?edit=2`} state={photo}>
                                     <img src={Edit} alt="" />
                                 </Link>
                                 <img onClick={handleDelete} src={Delete} alt="" />
@@ -58,11 +58,6 @@ const Single = () => {
                         )}
                 </div>
                 <h1>{photo.title}</h1>
-                <p
-                    dangerouslySetInnerHTML={{
-                        __html: DOMPurify.sanitize(photo.desc),
-                    }}
-                ></p>
             </div>
         </div>
     );
