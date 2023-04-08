@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import axios from "axios";
+import moment from "moment";
 
 const Photos = () => {
     const [photos, setPhotos] = useState([]);
@@ -57,6 +58,7 @@ const Photos = () => {
                             </div>
                             <div className="content">
                                 <h1>{photo.title}</h1>
+                                <p>Photo posted {moment(photo.date).fromNow()}</p>
                             </div>
                         </div>
                     ))}
