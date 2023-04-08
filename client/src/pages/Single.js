@@ -1,54 +1,71 @@
-import React from "react";
-import { useEffect } from "react";
-import { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import Edit from "../img/edit.png";
+import Delete from "../img/delete.png";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import axios from "axios";
+import moment from "moment";
+import { useContext } from "react";
+import { AuthContext } from "../context/authContext";
+import DOMPurify from "dompurify";
 
 const Single = () => {
-
-    const [photo, setPhoto] = useState();
+    const [photo, setPhoto] = useState({});
 
     const location = useLocation();
-    const postId = location.pathname.split('/')[2];
+    const navigate = useNavigate();
+
+    const photoId = location.pathname.split("/")[2];
+
+    const { currentUser } = useContext(AuthContext);
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const res = await axios.get(`/photos/${postId}`);
+                const res = await axios.get(`/photos/${photoId}`);
                 setPhoto(res.data);
             } catch (err) {
                 console.log(err);
             }
         };
         fetchData();
-    }, [postId]);
+    }, [photoId]);
 
-  return (
-    <div className="single">
-    <div className="content">
-      <img src={photo?.img} alt="" />
-      <div className="user">
-        {/* {photo.userImg && 
-        <img
-          src={photo.userImg}
-          alt=""
-        />} */}
-        <div className="info">
-          <span>{photo.username}</span>
-          <p>Posted {moment(photo.date).fromNow()}</p>
+    const handleDelete = async () => {
+        try {
+            await axios.delete(`/photos/${photoId}`);
+            navigate("/")
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
+    return (
+        <div className="single">
+            <div className="content">
+                <img src={photo?.img} alt="" />
+                <div className="user">
+                    <div className="info">
+                        <span>{photo.username}</span>
+                        <p>Photo posted {moment(photo.date).fromNow()}</p>
+                    </div>
+                        {currentUser.username === photo.username && (
+                            <div className="edit">
+                                <Link to={`/write?edit=2`} state={photo}>
+                                    <img src={Edit} alt="" />
+                                </Link>
+                                <img onClick={handleDelete} src={Delete} alt="" />
+                            </div>
+                        )}
+                </div>
+                <h1>{photo.title}</h1>
+                <p
+                    dangerouslySetInnerHTML={{
+                        __html: DOMPurify.sanitize(photo.desc),
+                    }}
+                ></p>
+            </div>
         </div>
-        {currentUser.username === photo.username && (
-          <div className="edit">
-            <Link to={`/write?edit=2`} state={photo}>
-              <img src={Edit} alt="" />
-            </Link>
-            <img onClick={handleDelete} src={Delete} alt="" />
-          </div>
-        )}
-      </div>
-      <h1>{photo.title}</h1>
-      </div>
-  </div>
-  )
-}
+    );
+};
 
-export default Single
+export default Single;

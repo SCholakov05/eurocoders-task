@@ -1,5 +1,5 @@
 $lightBlue: #e4f1fe;
-$midBlue: #2895ac;
+$midBlue: #2e91ec;
 $hoverBoxShadow: 1px 1px 7px 0px rgba(0, 0, 0, 0.45);
 
 body {
@@ -87,7 +87,7 @@ body {
         align-items: center;
         gap: 1.5vw;
       }
-      //NAVBAR & FOOTER
+      //NAVBAR
 
       .navbar {
         .container {
@@ -96,25 +96,13 @@ body {
           justify-content: space-between;
 
           .logo {
-            height: 10vh;
+            margin-top: 1vh;
+            height: 6vh;
           }
 
           span {
             cursor: pointer;
           }
-        }
-      }
-
-      footer {
-        margin-top: 10vh;
-        padding: 3vw;
-        background-color: $midBlue;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-
-        img {
-          height: 10vh;
         }
       }
 
@@ -129,14 +117,10 @@ body {
 
           .photo {
             display: flex;
-            gap: 100px;
-
-            &:nth-child(2n + 1) {
-              flex-direction: row-reverse;
-            }
+            gap: 10vh;
 
             .img {
-              flex: 2;
+              flex: 3;
               position: relative;
 
               &::after {
@@ -229,11 +213,11 @@ body {
 
           .edit {
             display: flex;
-            gap: 5px;
+            gap: 1vh;
 
             img {
-              width: 20px;
-              height: 20px;
+              width: 5vh;
+              height: 5vh;
               cursor: pointer;
             }
           }
@@ -255,6 +239,7 @@ body {
       .add {
         margin-top: 20px;
         display: flex;
+        flex-direction: column;
         gap: 20px;
 
         .content {
@@ -323,15 +308,20 @@ body {
                 }
               }
               :last-child {
-                cursor: pointer;
-                color: white;
                 background-color: $midBlue;
-                border: none;
-                padding: 3px 5px;
+            height: 5vh;
+            padding: 10px;
+            border: none;
+            margin-top: 1.5vh;
+            border-radius: 5px;
+            color: white;
+            font-size: 1.1rem;
+            box-shadow: 1px 2px 10px 0px rgba(0, 0, 0, 0.15);
+            cursor: pointer;
 
-                &:hover {
-                  box-shadow: $hoverBoxShadow;
-                }
+            &:hover {
+              box-shadow: $hoverBoxShadow;
+            }
               }
             }
 

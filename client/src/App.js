@@ -13,6 +13,7 @@ import Navbar from "./components/Navbar";
 import './Style.scss';
 import Photos from "./pages/Photos";
 import Single from "./pages/Single";
+import PublishPhoto from "./pages/PublishPhoto";
 
 const Layout = () => {
   return (
@@ -39,6 +40,10 @@ const router = createBrowserRouter([
       {
         path: "/photo/:id",
         element: <Single />,
+      },
+      {
+        path: "/publish",
+        element: <PublishPhoto />,
       },
     ]
 

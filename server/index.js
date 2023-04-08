@@ -3,7 +3,7 @@ import cors from 'cors';
 import authRouter from './routes/auth.js';
 import photosRouter from './routes/photos.js';
 import cookieParser from 'cookie-parser';
-
+import multer from 'multer';
 
 const app = express();
 const port = 8800;

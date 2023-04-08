@@ -49,12 +49,12 @@ const Photos = () => {
                                 console.log(photo.id)
                             }
                             <div className="img">
-                                <Link to={`/photos/${cat}/${photo.id}`}>
+                                <Link to={`/photo/${photo.id}`}>
                                     <img src={photo.img} alt={`${photo.title} photo`} />
                                 </Link>
                             </div>
                             <div className="content">
-                                    <h1>{photo.title}</h1>
+                                <h1>{photo.title}</h1>
                             </div>
                         </div>
                     ))}
