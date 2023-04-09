@@ -6,14 +6,16 @@ import {
   Link,
   Outlet,
 } from "react-router-dom";
-import Home from "./pages/Home";
-import Register from "./pages/Register";
-import Login from "./pages/Login";
-import Navbar from "./components/Navbar";
+import Home from "./pages/home/Home";
+import Register from "./pages/login-register/Register";
+import Login from "./pages/login-register/Login";
+import Navbar from "./components/navbar/Navbar";
 import './Style.scss';
-import Photos from "./pages/Photos";
+import Photos from "./pages/photos/Photos";
 import Single from "./pages/Single";
 import PublishPhoto from "./pages/PublishPhoto";
+import Users from "./pages/Users";
+import Contacts from "./pages/Contacts";
 
 const Layout = () => {
   return (
@@ -36,6 +38,14 @@ const router = createBrowserRouter([
       {
         path: "/photos",
         element: <Photos />,
+      },
+      {
+        path: "/users",
+        element: <Users />,
+      },
+      {
+        path: "/contacts",
+        element: <Contacts />,
       },
       {
         path: "/photo/:id",

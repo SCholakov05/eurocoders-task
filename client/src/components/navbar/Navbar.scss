@@ -1,0 +1,45 @@
+.navbar {
+  .container {
+    padding: 10px 0px;
+    display: flex;
+    justify-content: space-between;
+
+    .logo {
+      margin-top: 1vh;
+      height: 6vh;
+    }
+
+    span {
+      cursor: pointer;
+    }
+
+    .logout {
+        font-weight: bold;
+        font-size: 0.95rem;
+
+        &:hover {
+            color: #2e91ec;
+          }
+    }
+
+    .publish {
+      background-color: #2e91ec;
+      width: 15vh;
+      height: 6vh;
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      &:hover {
+        box-shadow: 1px 1px 5px 0px rgba(0, 0, 0, 0.50);
+      }
+
+      .publish-link {
+        font-size: 1.35rem;
+        text-decoration: none;
+        color: white;
+      }
+    }
+  }
+}

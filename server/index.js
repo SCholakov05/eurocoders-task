@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import authRoutes from './routes/auth.js';
 import photosRoutes from './routes/photos.js';
+import usersRoutes from './routes/users.js';
 import cookieParser from 'cookie-parser';
 import multer from 'multer';
 
@@ -33,7 +34,8 @@ app.post("/api/upload", upload.single('file'), (req, res) => {
 
 app.use("/api/auth", authRoutes);
 app.use("/api/photos", photosRoutes);
+app.use("/api/users", usersRoutes);
 
-app.listen(port, () => {
+  app.listen(port, () => {
     console.log(`Server listening on port http://localhost:${port}`);
-});
+  });

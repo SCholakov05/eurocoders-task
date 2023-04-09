@@ -22,17 +22,18 @@ const PublishPhoto = () => {
             console.log(err);
         }
     }
-
+    
     const handleClick = async (e) => {
         e.preventDefault();
         const imgUrl = await upload();
+        console.log(imgUrl);
         try {
             state ? await axios.put(`/photos/${state.id}`, {
                 title, cat, img: file ? imgUrl : ''
             }) : await axios.post(`/photos/`, {
-                title, cat, img: file ? imgUrl : '', date: moment(Date.now()).format('YYYY-MM-DD HH:MM:SS')
+                title, cat, img: file ? imgUrl : '', date: moment(Date.now()).format('YYYY-MM-DD HH:mm:ss')
             });
-            navigate('/');
+            navigate('/');s
         } catch (err) {
             console.log(err);
         }
@@ -54,7 +55,7 @@ const PublishPhoto = () => {
                         style={{ display: "none" }}
                         type="file"
                         id="file"
-                        name=""
+                        accept="image/png, image/jpeg"
                         onChange={(e) => setFile(e.target.files[0])}
                     />
                     <label className="file" htmlFor="file">
