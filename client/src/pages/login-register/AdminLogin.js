@@ -1,11 +1,9 @@
 import { Link } from "react-router-dom";
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { AuthContext } from "../../context/authContext";
-import HomeBtn from "./HomeBtn";
-import './LoginRegister.scss';
+import './AdminLogin.scss';
 
-const Login = () => {
+const AdminLogin = () => {
     const [inputs, setInputs] = useState({
         username: '',
         password: '',
@@ -15,40 +13,37 @@ const Login = () => {
 
     const navigate = useNavigate();
 
-    const { login } = useContext(AuthContext);
-
     const handleChange = (e) => {
         setInputs(prev => ({ ...prev, [e.target.name]: e.target.value }));
     }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        try {
-            await login(inputs);
-            navigate('/');
-        } catch (err) {
-            setError(err.response.data);
+        if(inputs.username === 'admin' && inputs.password === 'admin') {
+            navigate('/admin-home');
+        } else {
+            setError('Incorrect admin username or password!')
         }
     }
 
     return (
         <>
-            <HomeBtn />
+            <Link to="/login">
+                <button className="homeBtn">BACK</button>
+            </Link>
             <div className='auth'>
-                <h1>LOGIN</h1>
+                <h1>ADMIN LOGIN</h1>
                 <form>
                     <input required type="text" placeholder='Username...' name="username" onChange={handleChange} />
                     <input required type="password" placeholder='Password...' name="password" onChange={handleChange} />
-                    <button onClick={handleSubmit}>LOGIN</button>
+                    <button className="loginAdmin" onClick={handleSubmit}>LOGIN</button>
                     {
                         error && <p>{error}</p>
                     }
-                    <span>Not registered yet? <Link to='/register'>Register</Link></span>
                 </form>
-                    <Link to='/admin-login'><button className="admin">ADMIN</button></Link>
             </div>
         </>
     )
 }
 
-export default Login
+export default AdminLogin

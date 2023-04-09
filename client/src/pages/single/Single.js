@@ -11,6 +11,8 @@ import './Single.scss';
 const Single = () => {
   const [photo, setPhoto] = useState({});
   const [comments, setComments] = useState([]);
+  const [comment, setComment] = useState('');
+  console.log(comment);
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -31,11 +33,9 @@ const Single = () => {
       }
     };
     fetchData();
-  }, [photoId]);
+  }, [photoId, comments]);
 
-  console.log(comments);
-
-  const handleDelete = async () => {
+  const handleDeletePhoto = async () => {
     try {
       await axios.delete(`/photos/${photoId}`);
       navigate("/");
@@ -44,17 +44,29 @@ const Single = () => {
     }
   };
 
+  const handleClickCmnt = async (e) => {
+    e.preventDefault();
+    try {
+      await axios.post(`/comments`, {
+        comment, date: moment(Date.now()).format('YYYY-MM-DD HH:mm:ss'), pid: photoId
+      });
+    } catch (err) {
+      console.log(err);
+    }
+    setComment('');
+  };
+
   return (
     <div className="single">
       <div className="content">
         <img src={`../upload/${photo?.img}`} alt="" />
         <div className="user">
           <div className="info">
-          <div className="add-cmnt">
-            <label htmlFor="cmnt">Add a comment:</label>
-            <textarea name="cmnt" id="cmnt" cols="30" rows="10"></textarea>
-            <button>Add</button>
-          </div>
+            <div className="add-cmnt">
+              <label htmlFor="cmnt">Add a comment:</label>
+              <textarea id="cmnt" cols="30" rows="10" value={comment} onChange={(e) => setComment(e.target.value)}></textarea>
+              <button onClick={handleClickCmnt}>Add</button>
+            </div>
             <h2>{`Title: ${photo.title}`}</h2>
             <span>{`Username: ${photo.username}`}</span>
             <p>Photo posted {moment(photo.date).fromNow()}</p>
@@ -64,18 +76,21 @@ const Single = () => {
               <Link to={`/publish?edit=2`} state={photo}>
                 <button className="edit">EDIT</button>
               </Link>
-              <button className="delete" onClick={handleDelete}>DELETE</button>
+              <button className="delete" onClick={handleDeletePhoto}>DELETE</button>
             </div>
           )}
         </div>
         <div className="comments">
           {comments.map((cmnt) =>
             cmnt.pid === photo.id && (
-              <div >
-                {cmnt.comment}
+              <div key={cmnt.id}>
+                <div className="indCmnt">
+                  <p>{cmnt.comment}</p>
+                  <p>Comment posted {moment(comment.date).fromNow()}</p>
+                </div>
               </div>
             ))}
-        </div>
+            </div>
       </div>
     </div>
   );

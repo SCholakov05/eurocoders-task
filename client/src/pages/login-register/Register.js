@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import HomeBtn from "./HomeBtn";
 import './LoginRegister.scss';
 
 const Register = () => {
@@ -19,6 +20,7 @@ const Register = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log(inputs);
     try {
       await axios.post("/auth/register", inputs);
       navigate("/login");
@@ -28,27 +30,29 @@ const Register = () => {
   };
 
   return (
+    <>
+    <HomeBtn />
     <div className="auth">
       <h1>Register</h1>
       <form>
         <input
           required
           type="text"
-          placeholder="username"
+          placeholder="Username..."
           name="username"
           onChange={handleChange}
         />
         <input
           required
           type="email"
-          placeholder="email"
+          placeholder="Email..."
           name="email"
           onChange={handleChange}
         />
         <input
           required
           type="password"
-          placeholder="password"
+          placeholder="Password..."
           name="password"
           onChange={handleChange}
         />
@@ -59,6 +63,7 @@ const Register = () => {
         </span>
       </form>
     </div>
+    </>
   );
 };
 

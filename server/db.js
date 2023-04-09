@@ -4,5 +4,5 @@ import mysql from 'mysql';
     host: 'localhost',
     user: 'root',
     password: '12345',
-    database: 'eurocoders-task'
+    database: 'eurocoders-task',
 });

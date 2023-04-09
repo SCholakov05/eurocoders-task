@@ -5,7 +5,9 @@ import {
   Route,
   Link,
   Outlet,
+  useLocation,
 } from "react-router-dom";
+import { useState } from "react";
 import Home from "./pages/home/Home";
 import Register from "./pages/login-register/Register";
 import Login from "./pages/login-register/Login";
@@ -16,8 +18,11 @@ import Single from "./pages/single/Single";
 import PublishPhoto from "./pages/PublishPhoto";
 import Users from "./pages/Users";
 import Contacts from "./pages/contacts/Contacts";
+import AdminLogin from "./pages/login-register/AdminLogin";
+import AdminHome from "./pages/home/AdminHome";
 
 const Layout = () => {
+
   return (
     <>
       <Navbar />
@@ -65,6 +70,22 @@ const router = createBrowserRouter([
   {
     path: "/login",
     element: <Login />,
+  },
+  {
+    path: "/admin-login",
+    element: <AdminLogin />,
+  },
+  {
+    path: "/admin-home",
+    element: <AdminHome />,
+  },
+  {
+    path: "/admin-photos",
+    // element: <AdminPhotos />,
+  },
+  {
+    path: "/admin-users",
+    // element: <AdminUsers />,
   },
   
 

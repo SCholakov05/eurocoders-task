@@ -9,8 +9,6 @@ import './Home.scss';
 const Home = () => {
   const [photos, setPhotos] = useState([]);
 
-  console.log(photos);
-
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -23,7 +21,7 @@ const Home = () => {
     };
     fetchData();
   }, []);
-
+  
   return (
     <div className="home">
       <h2>Last 10 photos:</h2>

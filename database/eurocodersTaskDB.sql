@@ -1,19 +1,28 @@
-CREATE SCHEMA `eurocoders-task` ;
+CREATE SCHEMA `eurocoders_task_2`;
 
-USE `eurocoders-task`;
+USE `eurocoders_task_2`;
 
-create table users(
-id int not null auto_increment primary key,
-username varchar(45) not null,
-email varchar(255) not null,
-password varchar(255) not null,
+CREATE TABLE users (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  username VARCHAR(45) NOT NULL,
+  email VARCHAR(255) NOT NULL,
+  password VARCHAR(255) NOT NULL
 );
 
-create table photos(
-id int not null auto_increment primary key,
-img varchar(255) not null,
-date datetime ,
-uid int not null,
-cat varchar(45) not null,
-title varchar(45) not null,
+CREATE TABLE photos (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  img VARCHAR(255) NOT NULL,
+  date DATETIME,
+  cat VARCHAR(45) NOT NULL,
+  title VARCHAR(45) NOT NULL,
+  uid INT NOT NULL,
+  FOREIGN KEY (uid) REFERENCES users(id)
+);
+
+CREATE TABLE comments (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  comment TEXT NOT NULL,
+  date DATETIME,
+  pid INT NOT NULL,
+  FOREIGN KEY (pid) REFERENCES photos(id)
 );

@@ -22,18 +22,18 @@ const PublishPhoto = () => {
             console.log(err);
         }
     }
-    
+
     const handleClick = async (e) => {
         e.preventDefault();
         const imgUrl = await upload();
         console.log(imgUrl);
         try {
             state ? await axios.put(`/photos/${state.id}`, {
-                title, cat, img: file ? imgUrl : ''
+                title, cat, img: imgUrl
             }) : await axios.post(`/photos/`, {
-                title, cat, img: file ? imgUrl : '', date: moment(Date.now()).format('YYYY-MM-DD HH:mm:ss')
+                title, cat, img: imgUrl, date: moment(Date.now()).format('YYYY-MM-DD HH:mm:ss')
             });
-            navigate('/');s
+            navigate('/'); 
         } catch (err) {
             console.log(err);
         }
@@ -43,6 +43,7 @@ const PublishPhoto = () => {
             <div className="content">
                 <input
                     type="text"
+                    required
                     placeholder="Title"
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
@@ -53,6 +54,7 @@ const PublishPhoto = () => {
                     <h1>Publish</h1>
                     <input
                         style={{ display: "none" }}
+                        required
                         type="file"
                         id="file"
                         accept="image/png, image/jpeg"
@@ -64,6 +66,7 @@ const PublishPhoto = () => {
                     <h1>Category</h1>
                     <div className="cat">
                         <input
+                            required
                             type="radio"
                             checked={cat === "sport"}
                             name="cat"
@@ -119,9 +122,6 @@ const PublishPhoto = () => {
                     </div>
                     <button onClick={handleClick} className="publish">Publish</button>
                 </div>
-                {/* {
-                    file && <img src={`${file.name}`} alt="" />
-                } */}
             </div>
         </div>
     )

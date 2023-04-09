@@ -1,3 +1,4 @@
+
 .auth {
     display: flex;
     flex-direction: column;
@@ -27,8 +28,8 @@
         border-bottom: 1px solid gray;
       }
 
-      button {
-        background-color: #2e91ec;
+      .loginAdmin {
+        background-color: #d4af37;
         height: 5vh;
         padding: 10px;
         border: none;
@@ -65,23 +66,6 @@
 
   .homeBtn {
     background-color: #2e91ec;
-        height: 5vh;
-        padding: 10px;
-        border: none;
-        margin-top: 1.5vh;
-        border-radius: 5px;
-        font-size: 1.1rem;
-        color: white;
-        box-shadow: 1px 2px 10px 0px rgba(0, 0, 0, 0.15);
-        cursor: pointer;
-
-        &:hover {
-          box-shadow: 1px 1px 7px 0px rgba(0, 0, 0, 0.45);;
-        }
-  }
-
-  .admin {
-    background-color: #d4af37;
         height: 5vh;
         padding: 10px;
         border: none;
