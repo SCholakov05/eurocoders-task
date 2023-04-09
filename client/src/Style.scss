@@ -124,62 +124,7 @@ body {
 
       //SINGLE
 
-      .single {
-        display: flex;
-        flex-direction: column;
-        gap: 50px;
-
-        .content {
-          flex: 5;
-          display: flex;
-          flex-direction: column;
-          gap: 30px;
-
-          img {
-            width: 100%;
-            height: 50vh;
-            object-fit: cover;
-          }
-
-          .user {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 14px;
-            img {
-              width: 50px;
-              height: 50px;
-              border-radius: 50%;
-              object-fit: cover;
-            }
-
-            span {
-              font-weight: bold;
-            }
-          }
-
-          .edit {
-            display: flex;
-            gap: 1vh;
-
-            img {
-              width: 5vh;
-              height: 5vh;
-              cursor: pointer;
-            }
-          }
-
-          h1 {
-            font-size: 42px;
-            color: #333;
-          }
-
-          p {
-            text-align: justify;
-            line-height: 30px;
-          }
-        }
-      }
+      
 
       //PUBLISH
 

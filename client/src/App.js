@@ -12,7 +12,7 @@ import Login from "./pages/login-register/Login";
 import Navbar from "./components/navbar/Navbar";
 import './Style.scss';
 import Photos from "./pages/photos/Photos";
-import Single from "./pages/Single";
+import Single from "./pages/single/Single";
 import PublishPhoto from "./pages/PublishPhoto";
 import Users from "./pages/Users";
 import Contacts from "./pages/contacts/Contacts";
