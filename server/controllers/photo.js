@@ -14,7 +14,7 @@ export const getPhotos = (req, res) => {
 };
 
 export const getPhoto = (req, res) => {
-    const q = "SELECT p.id , `username`, `title`, p.img ,`cat`,`date` FROM users u JOIN photos p ON u.id = p.uid WHERE p.id = ? ";
+    const q = "SELECT p.id , `username`, `title`, p.img ,`cat`, p.date FROM users u JOIN photos p ON u.id = p.uid WHERE p.id = ? ";
 
     db.query(q, [req.params.id], (err, data) => {
         if (err) return res.status(500).json(err);

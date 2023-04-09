@@ -12,7 +12,6 @@ const Single = () => {
   const [photo, setPhoto] = useState({});
   const [comments, setComments] = useState([]);
   const [comment, setComment] = useState('');
-  console.log(comment);
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -59,7 +58,7 @@ const Single = () => {
   return (
     <div className="single">
       <div className="content">
-        <img src={`../upload/${photo?.img}`} alt="" />
+        <img src={`../upload/${photo?.img}`} />
         <div className="user">
           <div className="info">
             <div className="add-cmnt">

@@ -14,8 +14,9 @@
     gap: 30px;
     align-items: center;
     justify-content: center;
-
+    
     img {
+        margin-top: 5vh;
       width: 30%;
       height: 30%;
       object-fit: cover;
@@ -41,11 +42,6 @@
       display: flex;
       gap: 1vh;
 
-      img {
-        width: 5vh;
-        height: 5vh;
-        cursor: pointer;
-      }
     }
 
     .comments {

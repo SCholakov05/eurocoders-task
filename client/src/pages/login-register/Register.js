@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import HomeBtn from "./HomeBtn";
+import moment from "moment";
 import './LoginRegister.scss';
 
 const Register = () => {
@@ -9,6 +10,7 @@ const Register = () => {
     username: "",
     email: "",
     password: "",
+    date: moment(Date.now()).format('YYYY-MM-DD HH:mm:ss')
   });
   const [err, setError] = useState(null);
 

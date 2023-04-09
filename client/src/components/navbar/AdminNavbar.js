@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../context/authContext";
 import Logo from "../../img/logo-eurocoders.svg";
-import './AdminNavbar.scss'
+import './Navbar.scss'
 
 const AdminNavbar = () => {
   const { currentUser, logout } = useContext(AuthContext);
@@ -22,7 +22,9 @@ const AdminNavbar = () => {
           <Link className="link" to="/admin-users">
             <h6>USERS</h6>
           </Link>
-            <span onClick={logout} className="logout">LOGOUT</span>
+          <Link className="link" to="/">
+            <h6>LOGOUT</h6>
+          </Link>
           {
             currentUser && 
           <span>Hello, admin!</span>
