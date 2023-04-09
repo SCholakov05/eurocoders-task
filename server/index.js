@@ -5,6 +5,7 @@ import photosRoutes from './routes/photos.js';
 import usersRoutes from './routes/users.js';
 import cookieParser from 'cookie-parser';
 import multer from 'multer';
+import { Users, Photos } from './model/models.js';
 
 const app = express();
 const port = 8800;
@@ -39,3 +40,4 @@ app.use("/api/users", usersRoutes);
   app.listen(port, () => {
     console.log(`Server listening on port http://localhost:${port}`);
   });
+

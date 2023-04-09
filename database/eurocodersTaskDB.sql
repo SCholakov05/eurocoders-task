@@ -1,4 +1,6 @@
-USE `eurocoders-task-test`;
+CREATE SCHEMA `eurocoders-task` ;
+
+USE `eurocoders-task`;
 
 create table users(
 id int not null auto_increment primary key,

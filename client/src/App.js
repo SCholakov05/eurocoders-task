@@ -15,7 +15,7 @@ import Photos from "./pages/photos/Photos";
 import Single from "./pages/Single";
 import PublishPhoto from "./pages/PublishPhoto";
 import Users from "./pages/Users";
-import Contacts from "./pages/Contacts";
+import Contacts from "./pages/contacts/Contacts";
 
 const Layout = () => {
   return (
