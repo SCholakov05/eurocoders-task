@@ -7,17 +7,23 @@ import { AuthContext } from "../../context/authContext";
 import './Single.scss';
 
 const Single = () => {
+
+   // Setting up initial state for photo, comments, and comment
   const [photo, setPhoto] = useState({});
   const [comments, setComments] = useState([]);
   const [comment, setComment] = useState('');
 
+  // Getting the location and navigate function from react-router-dom
   const location = useLocation();
   const navigate = useNavigate();
 
+  // Extracting photoId from the url path
   const photoId = location.pathname.split("/")[2];
 
+  // Getting the current user from the authContext
   const { currentUser } = useContext(AuthContext);
 
+  // Fetching the photo and comments on mount or whenever there is a change in photoId or comments
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -32,6 +38,7 @@ const Single = () => {
     fetchData();
   }, [photoId, comments]);
 
+   // Deleting the photo with the given photoId
   const handleDeletePhoto = async () => {
     try {
       await axios.delete(`/photos/${photoId}`);
@@ -51,6 +58,7 @@ const Single = () => {
   //   }
   // }
 
+  // Adding a comment to the given photoId
   const handleClickCmnt = async (e) => {
     e.preventDefault();
     try {

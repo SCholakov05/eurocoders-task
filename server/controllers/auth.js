@@ -2,8 +2,9 @@ import { db } from '../db.js';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 
+// Register function to create a new user
 export const register = (req, res) => {
-  //CHECK EXISTING USER
+  // Check if user already exists
   const q = "SELECT * FROM users WHERE email = ? OR username = ?";
 
   db.query(q, [req.body.email, req.body.username], (err, data) => {
@@ -24,7 +25,7 @@ export const register = (req, res) => {
 };
 
 export const login = (req, res) => {
-  //CHECK USER    
+  // Check if user exists   
   const q = 'SELECT * FROM users WHERE username = ?';
   db.query(q, [req.body.username], (err, data) => {
     if (err) return res.json(err);
@@ -35,9 +36,11 @@ export const login = (req, res) => {
 
     if (!isPasswordCorrect) return res.status(400).json('Wrong username or password!');
 
+    // Create a token
     const token = jwt.sign({ id: data[0].id }, 'jwtkey');
     const { password, ...other } = data[0];
 
+    // Set cookie with the token and return user information
     res.cookie('access_token', token, {
       httpOnly: true
     })
@@ -46,6 +49,7 @@ export const login = (req, res) => {
   })
 }
 
+// Logout function to clear user's cookie
 export const logout = (req, res) => {
   res.clearCookie("access_token", {
     sameSite: "none",

@@ -6,41 +6,51 @@ import './PublishPhoto.scss';
 
 const PublishPhoto = () => {
 
+    // Retrieve the state from the location object
     const state = useLocation().state;
+
+    // Define the states using the useState hook
     const [title, setTitle] = useState(state?.title || "");
     const [file, setFile] = useState(null);
     const [cat, setCat] = useState(state?.cat || "");
     const [error, setError] = useState('');
 
+    // Retrieve the navigate function from the useNavigate hook
     const navigate = useNavigate();
 
+    // Define the upload function to upload the image file to the server
     const upload = async () => {
         try {
-            const formData = new FormData();
-            formData.append('file', file);
-            const res = await axios.post('/upload', formData);
-            return res.data;
+            const formData = new FormData(); // Create a new form data object
+            formData.append('file', file); // Append the image file to the form data object
+            const res = await axios.post('/upload', formData); // Send the form data object to the server to upload the image
+            return res.data; // Return the image URL
         } catch (err) {
             console.log(err);
         };
     };
 
+     // Define the handleClick function to handle the click event on the Publish button
     const handleClick = async (e) => {
         e.preventDefault();
+
+        // Check if all the required fields are filled
         if(title !== '' && file !== null && cat !== '') {
-            const imgUrl = await upload();
+            const imgUrl = await upload(); // Upload the image file to the server and retrieve the image URL
             try {
+                 // If the state exists, update the existing photo with the new values
+                // Otherwise, create a new photo with the given values
                 state ? await axios.put(`/photos/${state.id}`, {
                     title, cat, img: imgUrl
                 }) : await axios.post(`/photos/`, {
                     title, cat, img: imgUrl, date: moment(Date.now()).format('YYYY-MM-DD HH:mm:ss')
                 });
-                navigate('/'); 
+                navigate('/');  // Navigate to the home page
             } catch (err) {
                 console.log(err);
             }
         } else {
-            setError('All fields are mandatory!')
+            setError('All fields are mandatory!') // Set the error message if any of the required fields are empty
         }
     };
     return (

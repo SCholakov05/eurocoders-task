@@ -5,16 +5,20 @@ import moment from "moment";
 import './Photos.scss'
 
 const Photos = () => {
+  // Define state variables
   const [photos, setPhotos] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [photosPerPage, setPhotosPerPage] = useState(10);
 
+  // Get the category from the query string in the URL
   const cat = useLocation().search;
 
+  // Fetch photos from the server on component mount or when the category changes
   useEffect(() => {
     const fetchData = async () => {
       try {
         const res = await axios.get(`/photos/${cat}`);
+        // Sort the photos in descending order by date
         const sortedPhotos = res.data.sort((a, b) => {
           const dateA = new Date(a.date).getTime();
           const dateB = new Date(b.date).getTime();
@@ -28,17 +32,17 @@ const Photos = () => {
     fetchData();
   }, [cat]);
 
-  // Get current photos
+  // Get the current photos to display based on the current page number
   const indexOfLastPhoto = currentPage * photosPerPage;
   const indexOfFirstPhoto = indexOfLastPhoto - photosPerPage;
   const currentPhotos = photos.slice(indexOfFirstPhoto, indexOfLastPhoto);
 
-  // Change page
+  // Function to change the current page number
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
     <div className="photosPage">
-        <p>CATEGORY:</p>
+      <p>CATEGORY:</p>
       <div className="category">
         <Link className="link" to="/photos/?cat=sport">
           <h6>SPORT</h6>
@@ -75,6 +79,7 @@ const Photos = () => {
           </div>
         ))}
       </div>
+      {/* Pagination buttons  */}
       <div className="pagination">
         {photos.length > photosPerPage &&
           Array.from({ length: Math.ceil(photos.length / photosPerPage) }).map(
