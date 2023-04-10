@@ -15,7 +15,7 @@ import Navbar from "./components/navbar/Navbar";
 import './Style.scss';
 import Photos from "./pages/photos/Photos";
 import Single from "./pages/single/Single";
-import PublishPhoto from "./pages/PublishPhoto";
+import PublishPhoto from "./pages/publish-photo/PublishPhoto";
 import Users from "./pages/users/Users";
 import Contacts from "./pages/contacts/Contacts";
 import AdminLogin from "./pages/login-register/AdminLogin";

@@ -2,6 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
 import moment from "moment";
+import './PublishPhoto.scss';
 
 const PublishPhoto = () => {
 
@@ -9,6 +10,7 @@ const PublishPhoto = () => {
     const [title, setTitle] = useState(state?.title || "");
     const [file, setFile] = useState(null);
     const [cat, setCat] = useState(state?.cat || "");
+    const [error, setError] = useState('');
 
     const navigate = useNavigate();
 
@@ -25,17 +27,20 @@ const PublishPhoto = () => {
 
     const handleClick = async (e) => {
         e.preventDefault();
-        const imgUrl = await upload();
-        console.log(imgUrl);
-        try {
-            state ? await axios.put(`/photos/${state.id}`, {
-                title, cat, img: imgUrl
-            }) : await axios.post(`/photos/`, {
-                title, cat, img: imgUrl, date: moment(Date.now()).format('YYYY-MM-DD HH:mm:ss')
-            });
-            navigate('/'); 
-        } catch (err) {
-            console.log(err);
+        if(title !== '' && file !== null && cat !== '') {
+            const imgUrl = await upload();
+            try {
+                state ? await axios.put(`/photos/${state.id}`, {
+                    title, cat, img: imgUrl
+                }) : await axios.post(`/photos/`, {
+                    title, cat, img: imgUrl, date: moment(Date.now()).format('YYYY-MM-DD HH:mm:ss')
+                });
+                navigate('/'); 
+            } catch (err) {
+                console.log(err);
+            }
+        } else {
+            setError('All fields are mandatory!')
         }
     };
     return (
@@ -120,6 +125,9 @@ const PublishPhoto = () => {
                         />
                         <label htmlFor="food">Food</label>
                     </div>
+                    {
+                        error && <p>{error}</p>
+                    }
                     <button onClick={handleClick} className="publish">Publish</button>
                 </div>
             </div>

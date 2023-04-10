@@ -29,6 +29,15 @@ const AdminUsers = () => {
         fetchData();
     }, []);
 
+    const handleDeleteUser = async (user) => {
+        try {
+          await axios.delete(`/users/${user.id}`);
+          setUsers(users.filter((u) => u.id !== user.id)); // remove the deleted user from the state
+        } catch (err) {
+          console.log(err);
+        }
+      };
+
     // Get current users
     const indexOfLastUser = currentPage * usersPerPage;
     const indexOfFirstUser = indexOfLastUser - usersPerPage;
@@ -46,6 +55,7 @@ const AdminUsers = () => {
                     <div className="user" key={user.id}>
                         <p>User: {user.username}</p>
                         <p>Registered {moment(user.date).fromNow()}</p>
+                        <button onClick={() => handleDeleteUser(user)}>DELETE</button>
                     </div>
                 ))}
                  <div className="pagination">

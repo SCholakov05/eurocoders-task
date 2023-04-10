@@ -27,10 +27,10 @@ CREATE TABLE comments (
   FOREIGN KEY (pid) REFERENCES photos(id)
 );
 
-CREATE TABLE `eurocoders_task`.`emails` (
+CREATE TABLE emails (
   id INT PRIMARY KEY AUTO_INCREMENT,
-  from VARCHAR(45) NOT NULL,
-  to VARCHAR(45) NOT NULL,
+  from VARCHAR(255) NOT NULL,
+  to VARCHAR(255) NOT NULL,
   message VARCHAR(1000) NOT NULL,
 );
 

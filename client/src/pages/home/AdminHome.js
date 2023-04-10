@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import moment from "moment";
-import './Home.scss';
+import './AdminHome.scss';
 import AdminNavbar from "../../components/navbar/AdminNavbar";
 
 const AdminHome = () => {
@@ -50,10 +50,8 @@ console.log(users);
                 <div className="users">
                     {users.map((user) => (
                         <div className="user" key={user.id}>
-                            <div className="content">
                                 <h1>{`User: ${user.username}`}</h1>
                                 <p>User created {moment(user.date).fromNow()}</p>
-                            </div>
                         </div>
                     ))}
                 </div>

@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import moment from "moment";
 import './Users.scss';
-import AdminNavbar from "../../components/navbar/AdminNavbar";
 
 const Users = () => {
     const [users, setUsers] = useState([]);
@@ -39,7 +38,6 @@ const Users = () => {
 
     return (
         <>
-            <AdminNavbar />
             <div className="users">
                 <h1>Users:</h1>
                 {currentUsers.map((user) => (
