@@ -10,7 +10,7 @@ const PublishPhoto = () => {
     const [file, setFile] = useState(null);
     const [cat, setCat] = useState(state?.cat || "");
 
-    const navigate = useNavigate()
+    const navigate = useNavigate();
 
     const upload = async () => {
         try {
@@ -20,8 +20,8 @@ const PublishPhoto = () => {
             return res.data;
         } catch (err) {
             console.log(err);
-        }
-    }
+        };
+    };
 
     const handleClick = async (e) => {
         e.preventDefault();

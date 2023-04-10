@@ -16,10 +16,12 @@ import './Style.scss';
 import Photos from "./pages/photos/Photos";
 import Single from "./pages/single/Single";
 import PublishPhoto from "./pages/PublishPhoto";
-import Users from "./pages/Users";
+import Users from "./pages/users/Users";
 import Contacts from "./pages/contacts/Contacts";
 import AdminLogin from "./pages/login-register/AdminLogin";
 import AdminHome from "./pages/home/AdminHome";
+import AdminPhotos from "./pages/photos/AdminPhotos";
+import AdminUsers from "./pages/users/AdminUsers";
 
 const Layout = () => {
 
@@ -81,11 +83,11 @@ const router = createBrowserRouter([
   },
   {
     path: "/admin-photos",
-    // element: <AdminPhotos />,
+    element: <AdminPhotos />,
   },
   {
     path: "/admin-users",
-    // element: <AdminUsers />,
+    element: <AdminUsers />,
   },
   
 

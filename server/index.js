@@ -4,6 +4,7 @@ import authRoutes from './routes/auth.js';
 import photosRoutes from './routes/photos.js';
 import usersRoutes from './routes/users.js';
 import commentsRoutes from './routes/comments.js';
+import emailsRoutes from './routes/emails.js'
 import cookieParser from 'cookie-parser';
 import multer from 'multer';
 
@@ -34,6 +35,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/photos", photosRoutes);
 app.use("/api/users", usersRoutes);
 app.use("/api/comments", commentsRoutes);
+app.use("/api/emails", emailsRoutes);
 
   app.listen(port, () => {
     console.log(`Server listening on port http://localhost:${port}`);

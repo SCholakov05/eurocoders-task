@@ -37,7 +37,7 @@ const Photos = () => {
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
-    <div className="home">
+    <div className="photosPage">
         <p>CATEGORY:</p>
       <div className="category">
         <Link className="link" to="/photos/?cat=sport">

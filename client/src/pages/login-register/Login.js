@@ -22,12 +22,18 @@ const Login = () => {
     }
 
     const handleSubmit = async (e) => {
+
         e.preventDefault();
-        try {
-            await login(inputs);
-            navigate('/');
-        } catch (err) {
-            setError(err.response.data);
+
+        if (inputs.username !== '' && inputs.email !== '' && inputs.password !== '') {
+            try {
+                await login(inputs);
+                navigate('/');
+            } catch (err) {
+                setError(err.response.data);
+            }
+        } else {
+            setError('All fields are mandatory');
         }
     }
 
@@ -45,7 +51,7 @@ const Login = () => {
                     }
                     <span>Not registered yet? <Link to='/register'>Register</Link></span>
                 </form>
-                    <Link to='/admin-login'><button className="admin">ADMIN</button></Link>
+                <Link to='/admin-login'><button className="admin">ADMIN</button></Link>
             </div>
         </>
     )

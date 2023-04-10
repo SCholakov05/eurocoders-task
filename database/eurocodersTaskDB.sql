@@ -27,6 +27,13 @@ CREATE TABLE comments (
   FOREIGN KEY (pid) REFERENCES photos(id)
 );
 
+CREATE TABLE `eurocoders_task`.`emails` (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  from VARCHAR(45) NOT NULL,
+  to VARCHAR(45) NOT NULL,
+  message VARCHAR(1000) NOT NULL,
+);
+
 DELIMITER $$
 CREATE TRIGGER max_photos_per_user
 BEFORE INSERT ON photos

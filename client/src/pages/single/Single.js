@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Edit from "../../img/edit.png";
-import Delete from "../../img/delete.png";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import moment from "moment";
@@ -43,6 +41,15 @@ const Single = () => {
     }
   };
 
+  const handleDeleteComment = async () => {
+    try {
+      await axios.delete(`/comments/${comment.id}`);
+      // navigate("/");
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   const handleClickCmnt = async (e) => {
     e.preventDefault();
     try {
@@ -61,23 +68,29 @@ const Single = () => {
         <img src={`../upload/${photo?.img}`} />
         <div className="user">
           <div className="info">
+            {
+              currentUser &&
             <div className="add-cmnt">
               <label htmlFor="cmnt">Add a comment:</label>
               <textarea id="cmnt" cols="30" rows="10" value={comment} onChange={(e) => setComment(e.target.value)}></textarea>
               <button onClick={handleClickCmnt}>Add</button>
             </div>
+            }
             <h2>{`Title: ${photo.title}`}</h2>
             <span>{`Username: ${photo.username}`}</span>
             <p>Photo posted {moment(photo.date).fromNow()}</p>
           </div>
-          {currentUser.username === photo.username && (
-            <div >
-              <Link to={`/publish?edit=2`} state={photo}>
-                <button className="edit">EDIT</button>
-              </Link>
-              <button className="delete" onClick={handleDeletePhoto}>DELETE</button>
-            </div>
-          )}
+          {
+            currentUser &&
+            (currentUser.username === photo.username && (
+              <div >
+                <Link to={`/publish?edit=2`} state={photo}>
+                  <button className="edit">EDIT</button>
+                </Link>
+                <button className="delete" onClick={handleDeletePhoto}>DELETE</button>
+              </div>
+            ))
+          }
         </div>
         <div className="comments">
           {comments.map((cmnt) =>
@@ -87,9 +100,20 @@ const Single = () => {
                   <p>{cmnt.comment}</p>
                   <p>Comment posted {moment(comment.date).fromNow()}</p>
                 </div>
+                  {
+            currentUser &&
+            (currentUser.username === photo.username && (
+              <div >
+                <Link to={`/publish?edit=2`} state={photo}>
+                  <button className="edit">EDIT</button>
+                </Link>
+                <button className="delete" onClick={handleDeleteComment}>DELETE</button>
+              </div>
+            ))
+          }
               </div>
             ))}
-            </div>
+        </div>
       </div>
     </div>
   );

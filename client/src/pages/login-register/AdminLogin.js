@@ -21,8 +21,11 @@ const AdminLogin = () => {
         e.preventDefault();
         if(inputs.username === 'admin' && inputs.password === 'admin') {
             navigate('/admin-home');
-        } else {
-            setError('Incorrect admin username or password!')
+        } else if(inputs.username === '' && inputs.password === '') {
+            setError('All fields are mandatory!');
+        }
+         else {
+            setError('Incorrect admin username or password!');
         }
     }
 

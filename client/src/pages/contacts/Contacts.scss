@@ -29,6 +29,11 @@
         width: 15vw;
       }
 
+      textarea {
+        resize: none;
+        font-size: 1rem;
+      }
+
       button {
         background-color: #2e91ec;
         height: 5vh;

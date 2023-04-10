@@ -22,12 +22,16 @@ const Register = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(inputs);
-    try {
-      await axios.post("/auth/register", inputs);
-      navigate("/login");
-    } catch (err) {
-      setError(err.response.data);
+
+    if(inputs.username !== '' && inputs.email !== '' && inputs.password !== '') {
+      try {
+        await axios.post("/auth/register", inputs);
+        navigate("/login");
+      } catch (err) {
+        setError(err.response.data);
+      }
+    } else {
+      setError('All fields are mandatory');
     }
   };
 
